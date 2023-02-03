@@ -14,4 +14,5 @@ We learn 10 sprints during 4 months program.
 - 9.Essential Python for Data analyst
 - 10.Dashboard
 
-Badges:41.32 left Good jobs!!
+Good jobs!!
+Badges:coming soon :) 
