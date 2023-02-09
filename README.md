@@ -1,5 +1,5 @@
 # Bootcamp Projects
-Data science bootcamp batch06 with 'Toyeiei'
+Data science bootcamp batch06 with 'Toy' Data rockies
 
 We learn 10 sprints during 4 months program.
 
