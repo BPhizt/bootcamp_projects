@@ -67,3 +67,13 @@ for (friend in friends) {
 # in R >> the result was the same but R will show as vector
 friends <- c("Jenny", "Lisa", "Jisoo", "Rose")
 paste("Hi", friends)
+
+#apply
+#apply family >> margin 2=column, 1=row
+apply(mtcars, 2, sum) #R is easy
+
+#python or other languages have to write for loop
+for (i in 1:11) {
+ print(sum(mtcars[[i]]))
+}
+
