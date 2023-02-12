@@ -30,3 +30,40 @@ f_auth <- function() {
     }
   }
 }
+
+
+#for loop
+# for loop
+# vectorization**is a vector
+# similar with list in python
+# Toy was showing that R is so easy. We not need for loop
+# but in other language we will need to write for loop
+
+nums <- 1:10
+
+for (num in nums) {
+  print(num * 2)
+}
+## IN  R  we can write so short and easy
+nums <- 1:10
+nums * 2 # * คูณ
+
+#nums ยกกำลัง 3
+nums <- 1:10
+nums ** 3 #** ยกกำลัง
+
+#plus
+nums <- 1:10
+nums +12
+
+#for loop with hi friends example for other language
+# say Hi to each of our friends
+friends <- c("Jenny", "Lisa", "Jisoo", "Rose")
+
+for (friend in friends) {
+  print( paste("Hi", friend)  )
+}
+
+# in R >> the result was the same but R will show as vector
+friends <- c("Jenny", "Lisa", "Jisoo", "Rose")
+paste("Hi", friends)
