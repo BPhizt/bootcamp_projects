@@ -1,9 +1,9 @@
 #home work 01 / order pizza with chat bot
 
-#Menus
+#Menus..to be continuous..
 df_pizza <- data.frame(id)
----------
-#HOmework 1 chat bot order pizza 8-10 orders
+------------------
+
 
 #Homework 1 chat bot order pizza 8-10 orders
 
