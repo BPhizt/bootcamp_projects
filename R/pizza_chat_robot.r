@@ -83,25 +83,28 @@ print("How would you like to pay for it?")
 print("1.cash, 2.credit_card, 3.debit_card")
 paid <- readLines("stdin", n=1)
 
+
 #Question 8 
 print("Do you want anything else?")
 print("1.drinks, 2.no, thnks")
 anything <- readLines("stdin", n=1)
 if (anything ==1) {
   print("What drinks do you like?")
-} else(
-  print("Enjoy your food, don't forget to leave tips")
-)
-print("We only have..")
-print("1.water, 2.pepsi, 3.lemonade")
-drink <- readLines("stdin", n=1)
-if (drink == "1"){
+  print("We only have..")
+  print("1.water, 2.pepsi, 3.lemonade")
+  drink <- readLines("stdin", n=1)
+  if (drink == "1"){
   drink <- "water"
-} else if (drink == "2") {
+  } else if (drink == "2") {
   drink <- "pepsi"
 } else if (drink == "3") {
   drink <- "lemonade"
 } 
+print(paste("Here is your", drink))
+} else(
+  print("Enjoy your food, don't forget to leave tips")
+)
+
 print(paste("Here is your", drink))
 
 
