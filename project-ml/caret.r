@@ -1,10 +1,10 @@
-Machine Learning (ML) workflow is Train-Test-Split
+#Machine Learning (ML) workflow is Train-Test-Split
 
-3 types of Machine Learning (ML) 
-- Supervised learning > predict something
-- UnSupervised learning > summay data, find the pattern of data, find relation in data
-  clustering / Association / Dimension Reduction
-- Reinforcement learning(RL)
+#3 types of Machine Learning (ML) 
+#- Supervised learning > predict something
+#- UnSupervised learning > summay data, find the pattern of data, find relation in data
+  #clustering / Association / Dimension Reduction
+#- Reinforcement learning(RL)
 
 #installed "caret"
 
