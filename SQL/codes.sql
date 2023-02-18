@@ -121,4 +121,32 @@ SELECT
 	    	WHEN company IS NULL THEN 'Customer'
         ELSE 'Corporate'
     END AS segment
-FROM customers
+FROM customers;
+
+
+-- Join 4 tables and use COUNT n_track
+SELECT 
+	genre_name,
+	COUNT(*) AS n_tracks
+FROM (
+	SELECT
+		ar.name AS artist_name,
+		al.title,
+		tr.name AS track_name,
+		tr.milliseconds,
+		tr.bytes,
+		ge.name AS genre_name
+	FROM artists ar -- join table 
+	JOIN albums  al ON ar.artistid = al.artistid
+	JOIN tracks  tr ON tr.albumid  = al.albumid
+	JOIN genres  ge ON ge.genreid  = tr.genreid
+	WHERE ge.name <> 'Jazz' -- Boss said no need JAZZ song. We should put it inside inner subquery cuz WHERE will run before GROUP BY & HAVING
+	-- Make the data smaller then it will run faster.
+) AS sub
+GROUP BY genre_name
+-- genre songs more than 100
+-- HAVING will happen after GROUP BY uses for filter group// write same as WHERE
+HAVING COUNT(*) > 100  
+ORDER BY COUNT(*) DESC
+
+
