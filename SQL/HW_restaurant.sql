@@ -60,17 +60,18 @@ INSERT INTO sweets VALUES
 
 
 -- Table 3 combine_sweet_coffees
-/*CREATE TABLE combine_sweet_coffees(
+-- which combination is the best seller?
+CREATE TABLE combine_sweet_coffees(
     coffee_id INT,
     sweet_id INT
 );
 
 INSERT INTO combine_sweet_coffees VALUES
-    (1, 1), (1, 4), (1, 5), 
-    (2, 1), (2, 2), (2, 4), 
-    (3, 1), (3, 3), (3, 4), 
-    (4, 1), (4, 3), (4, 5), 
-    (5, 2), (5, 3), (5, 5); */
+    (1, 1), (1, 4), (1, 4), (5,5), 
+    (2, 1), (2, 2), (3, 4), (5,2),
+    (3, 3), (3, 3), (1, 4), (5,1),
+    (4, 1), (4, 3), (4, 5), (5,5),
+    (3, 3), (1, 4), (5, 5), (5,3); 
     
 -- Table 4 dimCustomers
 CREATE TABLE dimCustomers (
@@ -89,11 +90,102 @@ INSERT INTO dimCustomers VALUES
     (6, 'Lisa', 'Blackpink', '100-200-2023')
    ;
 
+/* SELECT  * FROM dimCustomers; */
+
+
+--Table 5 Location
+CREATE TABLE dimLocations (
+    location_id INT PRIMARY KEY,
+    location TEXT
+);
+
+INSERT INTO dimLocations VALUES 
+    (1, 'Atlanta'),
+    (2, 'Queens'),
+    (3, 'LA'),
+    (4, 'Seattle'),
+    (5, 'Khonkaen');
+
+--Table 5 dimpayments
+CREATE TABLE paymants (
+  payment_id INT PRIMARY KEY,
+  payment_method TEXT,
+  rate_charge REAL
+);
+INSERT INTO payments VALUES
+  (1, 'CASH', 0),
+  (2,'CREDIT CARD', 0.3),
+  (3, 'Scan_Apple watch', 0.1),
+  (4, 'PROMOTION_CODE', (-0.2))
+
+-- Table 7 factOrders
+CREATE TABLE factOrders (
+    order_id INT PRIMARY KEY,
+    coffee_id INT,
+    sweet_id INT,
+    customer_id INT,
+    payment_id INT,
+    order_date TEXT,
+  
+    FOREIGN KEY (coffee_id) REFERENCES dimCoffees (coffee_id),
+    FOREIGN KEY (sweet_id)  REFERENCES dimCustomers (sweet_id),
+    FOREIGN KEY (location_id) REFERENCES dimLocations (location_id),
+    FOREIGN KEY (payment_id) REFERENCES dimCoffees (payment_id)
+);
+INSERT INTO factOrders VALUES
+(1, 2, 3, 6, '2023-02-14',2),
+(2, 2, 3, 6, '2023-02-04',4),
+(3, 2, 3, 6, '2023-02-12',4),
+(4, 2, 3, 6, '2023-02-10',2),
+(5, 2, 3, 6, '2023-01-08',1),
+(6, 2, 3, 6, '2023-01-02',3),
+(7, 2, 3, 6, '2023-01-31',1),
+(8, 2, 3, 6, '2023-01-01',3);
+
+.mode markdown
+.header on
+
+-- Query 1 summary
+SELECT 
+    Ord.order_id,
+    Ord.order_date,
+    Cof.coffees_id,
+    Cof.price || ' $' AS price,
+    Cus.first_name || ' ' || Cus.last_name AS customer,
+    Loc.location
+   
+FROM factOrders AS Ord
+JOIN dimCoffees AS Cof ON Ord.coffee_id = Cof.coffee_id
+JOIN dimCustomers  AS Cus ON Ord.customer_id  = Cus.customer_id 
+JOIN dimLocations  AS Loc ON Ord.location_id  = Loc.location_id
+;
+
+
+-- Query 2 best seller 3 coffee
+SELECT 
+  Cof.coffee,
+  COUNT(*) AS n_coffee
+  
+ FROM factOrders AS Ord
+  JOIN dimCoffees AS Cof ON Ord.coffee_id = Cof.coffee_id
+  JOIN dimCustomers  AS Cus ON Ord.customer_id  = Cus.customer_id 
+  JOIN dimLocations  AS Loc ON Ord.location_id  = Loc.location_id
+  
+ GROUP BY 1
+ ORDER BY 2 DESC
+ LIMIT 3 ;
+ 
+ -- continuous -- 
 
 
 
 
-SELECT  * FROM dimCustomers;
+
+
+
+
+
+
 
 
 
