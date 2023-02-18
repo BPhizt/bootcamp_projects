@@ -150,3 +150,29 @@ HAVING COUNT(*) > 100
 ORDER BY COUNT(*) DESC
 
 
+-- View table for user that can use/edit data without affecting the actual database or drop(delete) data by accident.
+-- If we still have this query then we can drop it and run it afgain to get data back.
+--  or Artist release the new sonds or albums VIEW >> Full table will update automatically based on underline data(JOIN...).
+CREATE VIEW full_table AS
+	SELECT
+		ar.name AS artist_name,
+		al.title,
+		tr.name AS track_name,
+		tr.milliseconds,
+		tr.bytes,
+	        ge.name AS genre_name
+	FROM artists ar 
+		JOIN albums  al ON ar.artistid = al.artistid
+		JOIN tracks  tr ON tr.albumid  = al.albumid
+		JOIN genres  ge ON ge.genreid  = tr.genreid;
+-- If we create the table with CREATE it will never update(Permernent)
+CREATE VIEW us_uk_customers AS 
+  SELECT * FROM customers 
+  WHERE country = 'USA'
+  UNION -- remove duplicates
+  SELECT * FROM customers 
+  WHERE country = 'United Kingdom';
+  
+SELECT COUNT(*) FROM us_uk_customers;
+
+-- CTE is a tense table, VIEW is a virtual table, CREATE table is a physical table
