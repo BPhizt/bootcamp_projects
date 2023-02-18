@@ -1,0 +1,10 @@
+
+Google sheet & Excel
+- Pivot table (features) in excel are more various than google sheet.
+
+Google sheet data lists : https://support.google.com/docs/table/25273?hl=en
+
+What is differrent between dimension and measurement(metric)?
+  - dimnesion is categorical data ที่ใช้แบ่งข้อมูลเป็นกลุ่มๆ เช่น region, category, zipcode, city, country.
+  - measurement คือ คอลัมน์แบบ numerical data สามารถทำพวก aggregation ได้ เช่น sum, average, median.
+สูตรในการสร้าง pivot table รูปแบบที่เรียบง่ายที่สุดคือ 1 dimension x 1 measurement
