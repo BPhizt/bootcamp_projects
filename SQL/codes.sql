@@ -71,7 +71,7 @@ WITH invoice_y2010 AS (
 		FROM customers 
 		WHERE country = 'USA'
 )
-
+-- write version 1
 SELECT 
 		u.customerid, 
     u.firstname, 
@@ -82,6 +82,7 @@ JOIN invoice_y2010 AS i ON u.customerid = i.customerid
 GROUP BY u.customerid, u.firstname, u.lastname
 ORDER BY SUM(i.total) DESC -- descending high to low
 
+-- write version 2 same result
 SELECT 
 		u.customerid, 
     u.firstname, 
@@ -91,3 +92,33 @@ FROM usa_customers AS u
 JOIN invoice_y2010 AS i ON u.customerid = i.customerid
 GROUP BY 1,2,3
 ORDER BY 4 DESC -- descending high to low
+
+
+-- receive business require from boss then transfer it to query
+-- Question : Can you show the revenue in sep 2022?
+
+SELECT 
+	segment, 
+	SUM(revenue) AS total_revenue
+FROM revenue_table
+WHERE monthid = '202009'
+GROUP BY segment
+ORDER BY SUM(revenue) DESC -- descending high to low
+LIMIT 3; -- limit only 3 
+
+
+-- Clean Null value with CASE WHEN 
+-- definition 
+---WHEN company is null
+---THEN 'End customer' >> the customers buy item by themself
+---ELSE 'Corporate' 
+--- END AS 'Segment'
+SELECT 
+		firstname, 
+    company,
+    COALESCE(company, 'End Customer') AS clean_company,
+    CASE
+	    	WHEN company IS NULL THEN 'Customer'
+        ELSE 'Corporate'
+    END AS segment
+FROM customers
