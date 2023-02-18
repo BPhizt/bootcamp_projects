@@ -53,6 +53,7 @@ WHERE state = 'NY' OR state = 'CA';
 
 -- STRFTIME >> change formate date
 -- SQL doesn't concept about time/date so it contain the date as TEXT(string)
+--- invoice_y2010 is query 1
 WITH invoice_y2010 AS (
 		SELECT -- factInvoices
       invoicedate,
@@ -61,6 +62,7 @@ WITH invoice_y2010 AS (
       total
     FROM invoices
     WHERE  STRFTIME('%Y', invoicedate) = '2010'
+--- usa_customer is query 2
 ), usa_customers AS ( -- dimCustomers
 		SELECT 
 			customerid, -- key
