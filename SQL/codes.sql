@@ -153,6 +153,7 @@ ORDER BY COUNT(*) DESC
 -- View table for user that can use/edit data without affecting the actual database or drop(delete) data by accident.
 -- If we still have this query then we can drop it and run it afgain to get data back.
 --  or Artist release the new sonds or albums VIEW >> Full table will update automatically based on underline data(JOIN...).
+-- If we create the table with CREATE it will never update(Permernent)
 CREATE VIEW full_table AS
 	SELECT
 		ar.name AS artist_name,
@@ -165,14 +166,32 @@ CREATE VIEW full_table AS
 		JOIN albums  al ON ar.artistid = al.artistid
 		JOIN tracks  tr ON tr.albumid  = al.albumid
 		JOIN genres  ge ON ge.genreid  = tr.genreid;
--- If we create the table with CREATE it will never update(Permernent)
+		
+		
+-- Union >> 2 thingd things that you want to combine them togehter they need to be the same type.
+-- USA and United kingdom are str(TEXT)
+SELECT * FROM customers 
+  WHERE country = 'USA'
+  
+  UNION -- remove duplicates
+  
+  SELECT * FROM customers 
+  WHERE country = 'United Kingdom';
+  
+-- combine VIEW + UNION
 CREATE VIEW us_uk_customers AS 
   SELECT * FROM customers 
   WHERE country = 'USA'
   UNION -- remove duplicates
   SELECT * FROM customers 
   WHERE country = 'United Kingdom';
-  
+-- COUNT how many all customer in the table??
 SELECT COUNT(*) FROM us_uk_customers;
+
+-- Different between Union and Union all is
+-- UNION ALL will keep all duplicated values example. same name.
+-- UNION will remove duplication.
+
+-- D O N E -- ;))
 
 -- CTE is a tense table, VIEW is a virtual table, CREATE table is a physical table
